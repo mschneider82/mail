@@ -199,6 +199,12 @@ func (m *Message) SetBody(contentType, body string, settings ...PartSetting) {
 	m.SetBodyWriter(contentType, newCopier(body), settings...)
 }
 
+// SetBody sets the body of the message. It replaces any content previously set
+// by SetBody, SetBodyWriter, AddAlternative or AddAlternativeWriter.
+func (m *Message) SetBodyBytes(contentType string, body []byte, settings ...PartSetting) {
+	m.SetBodyWriter(contentType, newCopierWithBytes(body), settings...)
+}
+
 // SetBodyWriter sets the body of the message. It can be useful with the
 // text/template or html/template packages.
 func (m *Message) SetBodyWriter(contentType string, f func(io.Writer) error, settings ...PartSetting) {
@@ -213,6 +219,13 @@ func (m *Message) SetBodyWriter(contentType string, f func(io.Writer) error, set
 // HTML part. See http://en.wikipedia.org/wiki/MIME#Alternative
 func (m *Message) AddAlternative(contentType, body string, settings ...PartSetting) {
 	m.AddAlternativeWriter(contentType, newCopier(body), settings...)
+}
+
+func newCopierWithBytes(b []byte) func(io.Writer) error {
+	return func(w io.Writer) error {
+		_, err := w.Write(b)
+		return err
+	}
 }
 
 func newCopier(s string) func(io.Writer) error {
