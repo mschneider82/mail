@@ -109,6 +109,11 @@ func (m *Message) SetHeader(field string, value ...string) {
 	m.header[field] = value
 }
 
+// SetSubject with encoding
+func (m *Message) SetSubject(subject, charset string) {
+	m.header["Subject"] = []string{m.hEncoder.Encode(charset, subject)}
+}
+
 func (m *Message) encodeHeader(values []string) {
 	for i := range values {
 		values[i] = m.encodeString(values[i])
