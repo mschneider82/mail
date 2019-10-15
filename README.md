@@ -1,5 +1,5 @@
 # Gomail
-[![Build Status](https://travis-ci.org/go-mail/mail.svg?branch=master)](https://travis-ci.org/go-mail/mail) [![Code Coverage](http://gocover.io/_badge/github.com/go-mail/mail)](http://gocover.io/github.com/go-mail/mail) [![Documentation](https://godoc.org/github.com/go-mail/mail?status.svg)](https://godoc.org/github.com/go-mail/mail)
+[![Build Status](https://travis-ci.org/go-mail/mail.svg?branch=master)](https://travis-ci.org/go-mail/mail) [![Code Coverage](http://gocover.io/_badge/github.com/mschneider82/mail)](http://gocover.io/github.com/mschneider82/mail) [![Documentation](https://godoc.org/github.com/mschneider82/mail?status.svg)](https://godoc.org/github.com/mschneider82/mail)
 
 This is an actively maintained fork of [Gomail][1] and includes fixes and
 improvements for a number of outstanding issues. The current progress is
@@ -14,7 +14,7 @@ as follows:
 
 See [Transitioning Existing Codebases][3] for more information on switching.
 
-[1]: https://github.com/go-gomail/gomail
+[1]: https://github.com/mschneider82/gomail
 [2]: https://godoc.org/gopkg.in/mail.v2#NetDialTimeout
 [3]: #transitioning-existing-codebases
 
