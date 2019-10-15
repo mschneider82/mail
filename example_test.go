@@ -1,6 +1,7 @@
 package mail_test
 
 import (
+	"crypto/tls"
 	"fmt"
 	"html/template"
 	"io"
@@ -141,7 +142,7 @@ func Example_noSMTP() {
 }
 
 // Send an email using a Pool
-func Example_Pool() {
+func Example_pool() {
 	dialer := func() *mail.Dialer {
 		return &mail.Dialer{
 			Host:      "127.0.0.1",
