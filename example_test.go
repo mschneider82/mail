@@ -140,6 +140,28 @@ func Example_noSMTP() {
 	// To: [to@example.com]
 }
 
+// Send an email using a Pool
+func Example_Pool() {
+	dialer := func() *mail.Dialer {
+		return &mail.Dialer{
+			Host:      "127.0.0.1",
+			Port:      25,
+			TLSConfig: &tls.Config{InsecureSkipVerify: true},
+		}
+	}
+	pool, err := mail.NewPool(dialer, 1)
+
+	m := mail.NewMessage()
+	m.SetHeader("From", "from@example.com")
+	m.SetHeader("To", "to@example.com")
+	m.SetHeader("Subject", "Hello!")
+	m.SetBody("text/plain", "Hello!")
+
+	if err := pool.Send("from@example.com", 5*time.Second, m); err != nil {
+		panic(err)
+	}
+}
+
 var m *mail.Message
 
 func ExampleSetCopyFunc() {
