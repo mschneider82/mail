@@ -1,6 +1,10 @@
 # Gomail
 [![Build Status](https://travis-ci.org/go-mail/mail.svg?branch=master)](https://travis-ci.org/go-mail/mail) [![Code Coverage](http://gocover.io/_badge/github.com/mschneider82/mail)](http://gocover.io/github.com/mschneider82/mail) [![Documentation](https://godoc.org/github.com/mschneider82/mail?status.svg)](https://godoc.org/github.com/mschneider82/mail)
 
+This is a fork of https://github.com/go-mail/mail/ added connection Pool and some Methods to modify the charset/encoding of subject and body.
+
+Orignal:
+
 This is an actively maintained fork of [Gomail][1] and includes fixes and
 improvements for a number of outstanding issues. The current progress is
 as follows:
