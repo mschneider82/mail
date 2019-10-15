@@ -240,13 +240,19 @@ func (c *smtpSender) Send(from string, to []string, msg io.WriterTo) error {
 			if derr == nil {
 				if s, ok := sc.(*smtpSender); ok {
 					*c = *s
-					return c.Send(from, to, msg)
+					sendErr := c.Send(from, to, msg)
+					resetErr := c.Reset()
+					if sendErr == nil && resetErr == nil {
+						return nil
+					}
+					return fmt.Errorf("senderror: %s reset error: %w", sendErr.Error(), resetErr)
 				}
 			}
 		}
 
 		return err
 	}
+	defer c.Reset()
 
 	for _, addr := range to {
 		if err := c.Rcpt(addr); err != nil {
@@ -287,6 +293,7 @@ type smtpClient interface {
 	Mail(string) error
 	Rcpt(string) error
 	Data() (io.WriteCloser, error)
+	Reset() error
 	Quit() error
 	Close() error
 }

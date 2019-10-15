@@ -151,7 +151,9 @@ func Example_pool() {
 		}
 	}
 	pool, err := mail.NewPool(dialer, 1)
-
+	if err != nil {
+		panic(err)
+	}
 	m := mail.NewMessage()
 	m.SetHeader("From", "from@example.com")
 	m.SetHeader("To", "to@example.com")

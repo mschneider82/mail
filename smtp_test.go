@@ -36,6 +36,7 @@ func TestDialer(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -52,6 +53,7 @@ func TestDialerSSL(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -73,6 +75,7 @@ func TestDialerConfig(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -92,6 +95,7 @@ func TestDialerSSLConfig(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -109,6 +113,7 @@ func TestDialerNoStartTLS(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -128,6 +133,7 @@ func TestDialerOpportunisticStartTLS(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -151,6 +157,7 @@ func TestDialerOpportunisticStartTLSUnsupported(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -170,6 +177,7 @@ func TestDialerMandatoryStartTLS(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -217,6 +225,7 @@ func TestDialerNoAuth(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -240,6 +249,8 @@ func TestDialerTimeout(t *testing.T) {
 		"Data",
 		"Write message",
 		"Close writer",
+		"Reset",
+		"Reset",
 		"Quit",
 		"Close",
 	})
@@ -326,6 +337,11 @@ func (c *mockClient) Rcpt(to string) error {
 func (c *mockClient) Data() (io.WriteCloser, error) {
 	c.do("Data")
 	return &mockWriter{c: c, want: testMsg}, nil
+}
+
+func (c *mockClient) Reset() error {
+	c.do("Reset")
+	return nil
 }
 
 func (c *mockClient) Quit() error {
